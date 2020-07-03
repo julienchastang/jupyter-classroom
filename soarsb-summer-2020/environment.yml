@@ -1,0 +1,16 @@
+name: soarsb
+channels:
+  - conda-forge
+dependencies:
+  - python=3
+  - numpy
+  - matplotlib
+  - siphon
+  - metpy
+  - xarray
+  - netCDF4
+  - cartopy=0.17
+  - wrf-python
+  - pint
+  - eofs
+  - jupyterlab
