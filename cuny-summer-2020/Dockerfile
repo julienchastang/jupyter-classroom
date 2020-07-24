@@ -10,9 +10,13 @@ RUN apt-get update && \
     apt-get install -y --no-install-recommends openssh-client && \
     rm -rf /var/lib/apt/lists/*
 
+ADD environment.yml /tmp
+
 RUN conda install --quiet --yes \
     'conda-forge::nb_conda_kernels'  && \
-    pip install --upgrade jupyterlab-git && \
+    pip install --upgrade jupyterlab-git jupyterlab_sql && \
+    conda env update --name cuny-summer-2020 -f /tmp/environment.yml && \
+    rm /tmp/environment.yml && \
     conda clean --all -f -y && \
     jupyter lab build -y && \
     jupyter lab clean -y && \
@@ -21,5 +25,7 @@ RUN conda install --quiet --yes \
     rm -rf "/home/${NB_USER}/.node-gyp" && \
     fix-permissions "${CONDA_DIR}" && \
     fix-permissions "/home/${NB_USER}"
+
+COPY .condarc /
 
 USER $NB_UID

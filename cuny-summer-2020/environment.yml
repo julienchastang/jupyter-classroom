@@ -1,0 +1,22 @@
+name: cuny-summer-2020
+channels:
+  - conda-forge
+dependencies:
+  - python=3
+  - numpy
+  - scipy
+  - matplotlib
+  - cartopy
+  - netCDF4
+  - xarray
+  - pandas
+  - geopandas
+  - geoplot
+  - scikit-image
+  - scikit-learn
+  - boto3
+  - sqlalchemy
+  - dask
+  - tqdm
+  - s3fs
+  - jupyterlab
