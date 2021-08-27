@@ -1,0 +1,8 @@
+ name: unidata
+ channels:
+   - conda-forge
+ dependencies:
+   - cartopy
+   - jupyter
+   - pip
+   - ffmpeg
