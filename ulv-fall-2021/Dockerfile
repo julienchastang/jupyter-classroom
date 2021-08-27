@@ -14,13 +14,15 @@ ADD environment.yml /tmp
 
 RUN conda install --quiet --yes \
     'conda-forge::nb_conda_kernels'  && \
-    conda env update --name soarsb-summer-2021 -f /tmp/environment.yml && \
+    pip install --upgrade jupyterlab-git nbgitpuller  && \
+    conda env update --name ulv-fall-2021 -f /tmp/environment.yml && \
     rm /tmp/environment.yml && \
     conda clean --all -f -y && \
-    conda clean --all -f -y && \
+    jupyter lab build -y && \
+    jupyter lab clean -y && \
     npm cache clean --force && \
-    jupyter lab clean && \
-    rm -rf /home/$NB_USER/.cache/yarn && \
+    rm -rf "/home/${NB_USER}/.cache/yarn" && \
+    rm -rf "/home/${NB_USER}/.node-gyp" && \
     fix-permissions "${CONDA_DIR}" && \
     fix-permissions "/home/${NB_USER}"
 

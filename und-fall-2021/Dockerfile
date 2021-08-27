@@ -10,18 +10,21 @@ RUN apt-get update && \
     apt-get install -y --no-install-recommends openssh-client && \
     rm -rf /var/lib/apt/lists/*
 
-ADD environment.yml /tmp
-
 RUN conda install --quiet --yes \
     'conda-forge::nb_conda_kernels'  && \
-    conda env update --name soarsb-summer-2021 -f /tmp/environment.yml && \
-    rm /tmp/environment.yml && \
+    pip install --upgrade jupyterlab-git nbgitpuller  && \
+    wget -O environment.yml https://raw.githubusercontent.com/KennedyClouds/ATSC345_2020/master/ATSC345_2020.yml && \
+    conda env update --name und-fall-2021 -f environment.yml && \
+    rm environment.yml && \
     conda clean --all -f -y && \
-    conda clean --all -f -y && \
+    jupyter lab build -y && \
+    jupyter lab clean -y && \
     npm cache clean --force && \
-    jupyter lab clean && \
-    rm -rf /home/$NB_USER/.cache/yarn && \
+    rm -rf "/home/${NB_USER}/.cache/yarn" && \
+    rm -rf "/home/${NB_USER}/.node-gyp" && \
     fix-permissions "${CONDA_DIR}" && \
     fix-permissions "/home/${NB_USER}"
+
+COPY .condarc /
 
 USER $NB_UID
