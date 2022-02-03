@@ -17,7 +17,6 @@ RUN conda install --quiet --yes \
     conda env update --name clb-fall-2021 -f /tmp/environment.yml && \
     rm /tmp/environment.yml && \
     conda clean --all -f -y && \
-    conda clean --all -f -y && \
     npm cache clean --force && \
     jupyter lab clean && \
     rm -rf /home/$NB_USER/.cache/yarn && \

@@ -3,6 +3,7 @@
    - conda-forge
  dependencies:
    - cartopy
+   - pandas
    - jupyter
    - pip
    - ffmpeg
