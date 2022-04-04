@@ -1,0 +1,11 @@
+singleuser:
+  image:
+    name: unidata/rut-spring-2022
+    tag: ba10d67bb3f4
+
+hub:
+  services:
+    dask-gateway:
+      # This makes the gateway available at ${HUB_URL}/services/dask-gateway
+      url: http://traefik-dask-gateway
+      apiToken: "xxx"
